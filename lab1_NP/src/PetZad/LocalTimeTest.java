@@ -24,6 +24,7 @@ public class LocalTimeTest {
         /**
          * Create a {@link LocalTime} of 23:07 by using {@link LocalTime#of}
          */
+
         return LocalTime.of(23, 7);
     }
 
