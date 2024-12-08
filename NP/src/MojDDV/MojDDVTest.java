@@ -1,9 +1,11 @@
+package MojDDV;
+
 import java.io.*;
 import java.util.*;
 
 class AmountNotAllowedException extends Exception {
     public AmountNotAllowedException(double amount) {
-        super("Receipt with amount " + amount + " is not allowed to be scanned");
+        super("MojDDV.Receipt with amount " + amount + " is not allowed to be scanned");
     }
 }
 

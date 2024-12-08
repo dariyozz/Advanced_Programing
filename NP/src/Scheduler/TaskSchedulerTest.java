@@ -1,12 +1,14 @@
+package Scheduler;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
-// Task интерфејс кој дефинира метод за редниот број на задачата.
+// Scheduler.Task интерфејс кој дефинира метод за редниот број на задачата.
 interface Task {
     int getOrder();
 }
 
-// PriorityTask класа која ја имплементира Task и редниот број го базира на приоритетот.
+// Scheduler.PriorityTask класа која ја имплементира Scheduler.Task и редниот број го базира на приоритетот.
 class PriorityTask implements Task {
     private final int priority;
 
@@ -25,7 +27,7 @@ class PriorityTask implements Task {
     }
 }
 
-// TimedTask класа која ја имплементира Task и редниот број го базира на времето.
+// Scheduler.TimedTask класа која ја имплементира Scheduler.Task и редниот број го базира на времето.
 class TimedTask implements Task {
     private final int time;
 
@@ -44,12 +46,12 @@ class TimedTask implements Task {
     }
 }
 
-// TaskScheduler интерфејс за распоредување на задачи.
+// Scheduler.TaskScheduler интерфејс за распоредување на задачи.
 interface TaskScheduler<T extends Task> {
     List<T> schedule(T[] tasks);
 }
 
-// TaskRunner класа која ги стартува задачите користејќи TaskScheduler.
+// Scheduler.TaskRunner класа која ги стартува задачите користејќи Scheduler.TaskScheduler.
 class TaskRunner<T extends Task> {
     public void run(TaskScheduler<T> scheduler, T[] tasks) {
         List<T> orderedTasks = scheduler.schedule(tasks);
@@ -57,7 +59,7 @@ class TaskRunner<T extends Task> {
     }
 }
 
-// Schedulers класа со две статички методи за различни распоредувачи.
+// Scheduler.Schedulers класа со две статички методи за различни распоредувачи.
 class Schedulers {
 
     // Анонимна класа за сортирање на задачите според редниот број.
@@ -85,7 +87,7 @@ public class TaskSchedulerTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Вчитување на TimedTask задачи.
+        // Вчитување на Scheduler.TimedTask задачи.
         int n = scanner.nextInt();
         Task[] timeTasks = new Task[n];
         for (int i = 0; i < n; ++i) {
@@ -93,7 +95,7 @@ public class TaskSchedulerTest {
             timeTasks[i] = new TimedTask(time);
         }
 
-        // Вчитување на PriorityTask задачи.
+        // Вчитување на Scheduler.PriorityTask задачи.
         n = scanner.nextInt();
         Task[] priorityTasks = new Task[n];
         for (int i = 0; i < n; ++i) {
@@ -101,12 +103,12 @@ public class TaskSchedulerTest {
             priorityTasks[i] = new PriorityTask(priority);
         }
 
-        // Испечатување на PriorityTask задачи.
+        // Испечатување на Scheduler.PriorityTask задачи.
         Arrays.stream(priorityTasks).forEach(System.out::println);
 
         TaskRunner<Task> runner = new TaskRunner<>();
 
-        // Сортирање и прикажување на TimedTask и PriorityTask задачи.
+        // Сортирање и прикажување на Scheduler.TimedTask и Scheduler.PriorityTask задачи.
         System.out.println("=== Ordered tasks ===");
         System.out.println("Timed tasks");
         runner.run(Schedulers.getOrdered(), timeTasks);
